@@ -1,0 +1,40 @@
+## .NET
+bin/
+obj/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+*.vs/
+.vs/
+[Dd]ebug/
+[Rr]elease/
+artifacts/
+
+## NuGet
+*.nupkg
+**/packages/*
+project.lock.json
+project.fragment.lock.json
+
+## Connection strings and secrets
+**/appsettings.local.json
+**/ConnectionStrings.local.json
+**/connection.local.json
+*.pfx
+*.snk
+
+## OS / IDE
+Thumbs.db
+Desktop.ini
+.DS_Store
+*.swp
+.idea/
+
+## Test / coverage
+TestResults/
+coverage/
+
+## SQL backups
+*.bak
+*.trn

@@ -1,0 +1,6 @@
+{
+  "Server": "(localdb)\\MSSQLLocalDB",
+  "Database": "BibliotecaDB",
+  "IntegratedSecurity": true,
+  "TrustServerCertificate": true
+}

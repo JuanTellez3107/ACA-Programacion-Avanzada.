@@ -1,0 +1,24 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <ItemGroup>
+    <ProjectReference Include="..\Biblioteca.Entidades\Biblioteca.Entidades.csproj" />
+    <ProjectReference Include="..\Biblioteca.Negocio\Biblioteca.Negocio.csproj" />
+  </ItemGroup>
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net8.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <UseWindowsForms>true</UseWindowsForms>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <ApplicationTitle>Sistema de Gestión de Biblioteca</ApplicationTitle>
+    <RootNamespace>Biblioteca.Presentacion</RootNamespace>
+    <AssemblyName>SistemaBiblioteca</AssemblyName>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="..\Database\*.sql" Link="Database\%(Filename)%(Extension)" CopyToOutputDirectory="PreserveNewest" />
+    <None Include="..\Database\connection.example.json" Link="Database\connection.example.json" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+
+</Project>
