@@ -12,7 +12,7 @@ public class PanelReportes : PanelModulo
         : base("Reportes", "Consultas consolidadas de la biblioteca")
     {
         _servicios = servicios;
-        var barra = new Panel { Dock = DockStyle.Top, Height = 48 };
+        var barra = new PanelCristal { Dock = DockStyle.Top, Height = 48, Capa = UiFondo.Capa.VidrioClaro };
         var lbl = UiTema.Etiqueta("Seleccione un reporte");
         lbl.Location = new Point(8, 14);
         _cboReporte.Location = new Point(180, 10);

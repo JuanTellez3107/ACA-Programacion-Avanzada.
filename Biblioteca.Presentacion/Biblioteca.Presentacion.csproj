@@ -19,6 +19,7 @@
   <ItemGroup>
     <None Include="..\Database\*.sql" Link="Database\%(Filename)%(Extension)" CopyToOutputDirectory="PreserveNewest" />
     <None Include="..\Database\connection.example.json" Link="Database\connection.example.json" CopyToOutputDirectory="PreserveNewest" />
+    <EmbeddedResource Include="Resources\fondo-ingreso.png" />
   </ItemGroup>
 
 </Project>

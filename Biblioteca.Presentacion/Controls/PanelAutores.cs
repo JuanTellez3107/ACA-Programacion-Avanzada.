@@ -23,7 +23,7 @@ public class PanelAutores : PanelModulo
 
     private void Construir()
     {
-        var formulario = new Panel { Dock = DockStyle.Left, Width = 340, Padding = new Padding(8) };
+        var formulario = new PanelCristal { Dock = DockStyle.Left, Width = 340, Padding = new Padding(8), Capa = UiFondo.Capa.VidrioClaro };
         int y = 8;
         void Campo(string etiqueta, Control control)
         {
@@ -41,7 +41,7 @@ public class PanelAutores : PanelModulo
         Campo("Nacionalidad", _txtNacionalidad);
         Campo("Fecha de nacimiento", _dtNacimiento);
 
-        var acciones = new FlowLayoutPanel { Location = new Point(8, y + 8), Size = new Size(320, 90) };
+        var acciones = new FlowCristal { Location = new Point(8, y + 8), Size = new Size(320, 90), Capa = UiFondo.Capa.VidrioClaro };
         var btnNuevo = UiTema.CrearBoton("Nuevo", UiTema.Sidebar, 95);
         var btnGuardar = UiTema.CrearBoton("Guardar", UiTema.Exito, 95);
         var btnEliminar = UiTema.CrearBoton("Eliminar", UiTema.Peligro, 95);
@@ -51,7 +51,7 @@ public class PanelAutores : PanelModulo
         acciones.Controls.AddRange(new Control[] { btnNuevo, btnGuardar, btnEliminar });
         formulario.Controls.Add(acciones);
 
-        var derecha = new Panel { Dock = DockStyle.Fill, Padding = new Padding(8) };
+        var derecha = new PanelCristal { Dock = DockStyle.Fill, Padding = new Padding(8), Capa = UiFondo.Capa.VidrioClaro };
         _txtBuscar.Dock = DockStyle.Top;
         _txtBuscar.PlaceholderText = "Buscar autor...";
         _txtBuscar.TextChanged += (_, _) => Cargar();

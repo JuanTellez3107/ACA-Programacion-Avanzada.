@@ -19,15 +19,18 @@ public class FrmPrincipal : Form
         BackColor = UiTema.Fondo;
         Font = UiTema.Normal;
         StartPosition = FormStartPosition.CenterScreen;
+        DoubleBuffered = true;
+        SetStyle(ControlStyles.AllPaintingInWmPaint | ControlStyles.UserPaint | ControlStyles.OptimizedDoubleBuffer | ControlStyles.ResizeRedraw, true);
 
-        var sidebar = new Panel { Dock = DockStyle.Left, Width = 230, BackColor = UiTema.Sidebar };
+        var sidebar = new PanelCristal { Dock = DockStyle.Left, Width = 230, Capa = UiFondo.Capa.VidrioOscuro };
         var marca = new Label
         {
             Text = "Biblioteca\nInstitucional",
             ForeColor = Color.White,
             Font = new Font("Segoe UI", 14, FontStyle.Bold),
             Location = new Point(16, 20),
-            AutoSize = true
+            AutoSize = true,
+            BackColor = Color.Transparent
         };
         sidebar.Controls.Add(marca);
 
@@ -48,6 +51,8 @@ public class FrmPrincipal : Form
                 Cursor = Cursors.Hand
             };
             boton.FlatAppearance.BorderSize = 0;
+            boton.FlatAppearance.MouseOverBackColor = UiTema.SidebarHover;
+            boton.FlatAppearance.MouseDownBackColor = UiTema.Acento;
             boton.Click += (_, _) => Mostrar(item);
             sidebar.Controls.Add(boton);
             _botones[item] = boton;
@@ -55,7 +60,8 @@ public class FrmPrincipal : Form
         }
 
         var btnConexion = UiTema.CrearBoton("Conexión SQL", UiTema.Acento, 198, 34);
-        btnConexion.Location = new Point(16, 520);
+        btnConexion.Anchor = AnchorStyles.Left | AnchorStyles.Bottom;
+        sidebar.Resize += (_, _) => btnConexion.Location = new Point(16, Math.Max(520, sidebar.Height - 54));
         btnConexion.Click += (_, _) =>
         {
             using var frm = new FrmConexion(_servicios);
@@ -63,18 +69,19 @@ public class FrmPrincipal : Form
         };
         sidebar.Controls.Add(btnConexion);
 
-        var top = new Panel { Dock = DockStyle.Top, Height = 52, BackColor = Color.White };
+        var top = new PanelCristal { Dock = DockStyle.Top, Height = 52, Capa = UiFondo.Capa.VidrioOscuro };
         var titulo = new Label
         {
             Text = "Sistema de Gestión de Biblioteca",
             Font = new Font("Segoe UI", 13, FontStyle.Bold),
-            ForeColor = UiTema.Sidebar,
+            ForeColor = UiTema.TextoClaro,
             AutoSize = true,
-            Location = new Point(16, 14)
+            Location = new Point(16, 14),
+            BackColor = Color.Transparent
         };
         top.Controls.Add(titulo);
 
-        _contenido = new Panel { Dock = DockStyle.Fill, BackColor = UiTema.Fondo };
+        _contenido = new PanelCristal { Dock = DockStyle.Fill, Capa = UiFondo.Capa.Imagen };
         Controls.Add(_contenido);
         Controls.Add(top);
         Controls.Add(sidebar);
@@ -95,6 +102,11 @@ public class FrmPrincipal : Form
         }
 
         Mostrar("Inicio");
+    }
+
+    protected override void OnPaintBackground(PaintEventArgs e)
+    {
+        UiFondo.Pintar(e.Graphics, this, UiFondo.Capa.Imagen);
     }
 
     private void Mostrar(string nombre)

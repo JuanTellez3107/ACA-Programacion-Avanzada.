@@ -22,7 +22,7 @@ public class PanelLibros : PanelModulo
         : base("Libros", "CRUD bibliográfico, autores, editoriales y existencias")
     {
         _servicios = servicios;
-        var formulario = new Panel { Dock = DockStyle.Left, Width = 360, Padding = new Padding(8), AutoScroll = true };
+        var formulario = new PanelCristal { Dock = DockStyle.Left, Width = 360, Padding = new Padding(8), AutoScroll = true, Capa = UiFondo.Capa.VidrioClaro };
         int y = 8;
         void Campo(string etiqueta, Control control, int alto = 28)
         {
@@ -44,7 +44,7 @@ public class PanelLibros : PanelModulo
         Campo("Existencias", _numExistencias);
         Campo("Autores", _lstAutores, 120);
 
-        var acciones = new FlowLayoutPanel { Location = new Point(8, y + 8), Size = new Size(330, 90) };
+        var acciones = new FlowCristal { Location = new Point(8, y + 8), Size = new Size(330, 90), Capa = UiFondo.Capa.VidrioClaro };
         var btnNuevo = UiTema.CrearBoton("Nuevo", UiTema.Sidebar, 95);
         var btnGuardar = UiTema.CrearBoton("Guardar", UiTema.Exito, 95);
         var btnEliminar = UiTema.CrearBoton("Eliminar", UiTema.Peligro, 95);
@@ -54,7 +54,7 @@ public class PanelLibros : PanelModulo
         acciones.Controls.AddRange(new Control[] { btnNuevo, btnGuardar, btnEliminar });
         formulario.Controls.Add(acciones);
 
-        var derecha = new Panel { Dock = DockStyle.Fill, Padding = new Padding(8) };
+        var derecha = new PanelCristal { Dock = DockStyle.Fill, Padding = new Padding(8), Capa = UiFondo.Capa.VidrioClaro };
         _txtBuscar.Dock = DockStyle.Top;
         _txtBuscar.PlaceholderText = "Buscar por ISBN, título o autor...";
         _txtBuscar.TextChanged += (_, _) => Cargar();

@@ -12,11 +12,11 @@ public class PanelDashboard : PanelModulo
         : base("Inicio", "Resumen operativo de la biblioteca")
     {
         _servicios = servicios;
-        _tarjetas = new FlowLayoutPanel
+        _tarjetas = new FlowCristal
         {
             Dock = DockStyle.Top,
-            Height = 170,
-            BackColor = UiTema.Fondo,
+            Height = 310,
+            Capa = UiFondo.Capa.Imagen,
             WrapContents = true
         };
         _grid = new DataGridView { Dock = DockStyle.Fill };
@@ -27,7 +27,8 @@ public class PanelDashboard : PanelModulo
             Font = UiTema.Subtitulo,
             Dock = DockStyle.Top,
             Height = 32,
-            ForeColor = UiTema.Sidebar
+            ForeColor = UiTema.TextoClaro,
+            BackColor = Color.Transparent
         };
         Cuerpo.Controls.Add(_grid);
         Cuerpo.Controls.Add(lbl);
@@ -40,10 +41,10 @@ public class PanelDashboard : PanelModulo
         {
             var resumen = _servicios.Prestamos.ObtenerResumen();
             _tarjetas.Controls.Clear();
-            AgregarTarjeta("Libros", resumen.TotalLibros.ToString(), UiTema.Sidebar);
+            AgregarTarjeta("Libros", resumen.TotalLibros.ToString(), Color.FromArgb(22, 58, 96));
             AgregarTarjeta("Autores", resumen.TotalAutores.ToString(), UiTema.Acento);
-            AgregarTarjeta("Editoriales", resumen.TotalEditoriales.ToString(), Color.FromArgb(108, 52, 131));
-            AgregarTarjeta("Usuarios", resumen.TotalUsuarios.ToString(), Color.FromArgb(40, 116, 166));
+            AgregarTarjeta("Editoriales", resumen.TotalEditoriales.ToString(), Color.FromArgb(30, 78, 112));
+            AgregarTarjeta("Usuarios", resumen.TotalUsuarios.ToString(), Color.FromArgb(46, 104, 146));
             AgregarTarjeta("Préstamos activos", resumen.PrestamosActivos.ToString(), UiTema.Advertencia);
             AgregarTarjeta("Devueltos", resumen.PrestamosDevueltos.ToString(), UiTema.Exito);
             AgregarTarjeta("Disponibles", resumen.EjemplaresDisponibles.ToString(), UiTema.AcentoOscuro);
@@ -68,27 +69,35 @@ public class PanelDashboard : PanelModulo
 
     private void AgregarTarjeta(string titulo, string valor, Color color)
     {
-        var tarjeta = new Panel
+        var tarjeta = new PanelCristal
         {
-            Width = 180,
-            Height = 72,
-            BackColor = color,
-            Margin = new Padding(8)
+            Width = 210,
+            Height = 78,
+            Margin = new Padding(8),
+            Capa = UiFondo.Capa.VidrioClaro
         };
+        tarjeta.Controls.Add(new Panel
+        {
+            Dock = DockStyle.Left,
+            Width = 6,
+            BackColor = color
+        });
         tarjeta.Controls.Add(new Label
         {
             Text = titulo,
-            ForeColor = Color.White,
-            Location = new Point(12, 8),
-            AutoSize = true
+            ForeColor = UiTema.Texto,
+            Location = new Point(18, 8),
+            AutoSize = true,
+            BackColor = Color.Transparent
         });
         tarjeta.Controls.Add(new Label
         {
             Text = valor,
-            ForeColor = Color.White,
+            ForeColor = color,
             Font = new Font("Segoe UI", 18, FontStyle.Bold),
-            Location = new Point(12, 30),
-            AutoSize = true
+            Location = new Point(18, 32),
+            AutoSize = true,
+            BackColor = Color.Transparent
         });
         _tarjetas.Controls.Add(tarjeta);
     }

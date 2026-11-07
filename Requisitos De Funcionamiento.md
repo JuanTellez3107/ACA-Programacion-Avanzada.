@@ -7,9 +7,19 @@ Proyecto final de Programación Avanzada 2026. Arquitectura en tres capas más u
 ## Requisitos
 
 - Windows 10 u 11
-- [.NET 8 SDK](https://dotnet.microsoft.com/download/dotnet/8.0) (incluye el runtime Windows Desktop para WinForms)
 - SQL Server local: **SQL Server Express** (`.\SQLEXPRESS`) o **SQL Server Express LocalDB** (`(localdb)\MSSQLLocalDB`)
-- Git
+- Para usar el `.exe` publicado **no** se necesita Visual Studio ni el SDK
+- Para recompilar: [.NET 8 SDK](https://dotnet.microsoft.com/download/dotnet/8.0)
+
+## Paquete para otro equipo
+
+La carpeta lista para copiar está en `Entrega\SistemaGestionBiblioteca`. El ZIP se genera junto a ella.
+
+1. Copie esa carpeta al otro computador.
+2. Ejecute `Aplicacion\SistemaBiblioteca.exe`.
+3. En **Conexión SQL**, indique `(localdb)\MSSQLLocalDB` o `.\SQLEXPRESS`, pulse **Crear BD** y **Entrar**.
+
+Instrucciones detalladas: [Documentation/MANUAL_INSTALACION.md](Documentation/MANUAL_INSTALACION.md).
 
 ## Estructura
 

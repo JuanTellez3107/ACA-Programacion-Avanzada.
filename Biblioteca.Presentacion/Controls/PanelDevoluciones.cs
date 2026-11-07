@@ -13,7 +13,7 @@ public class PanelDevoluciones : PanelModulo
         : base("Devoluciones", "Registrar devolución, actualizar estado y disponibilidad")
     {
         _servicios = servicios;
-        var formulario = new Panel { Dock = DockStyle.Left, Width = 340, Padding = new Padding(8) };
+        var formulario = new PanelCristal { Dock = DockStyle.Left, Width = 340, Padding = new Padding(8), Capa = UiFondo.Capa.VidrioClaro };
         var lbl = UiTema.Etiqueta("Fecha de devolución");
         lbl.Location = new Point(8, 8);
         _dtDevolucion.Location = new Point(8, 30);
@@ -27,13 +27,14 @@ public class PanelDevoluciones : PanelModulo
         btn.Click += (_, _) => Devolver();
         formulario.Controls.AddRange(new Control[] { lbl, _dtDevolucion, lblObs, _txtObservaciones, btn });
 
-        var derecha = new Panel { Dock = DockStyle.Fill, Padding = new Padding(8) };
+        var derecha = new PanelCristal { Dock = DockStyle.Fill, Padding = new Padding(8), Capa = UiFondo.Capa.VidrioClaro };
         var info = new Label
         {
             Text = "Seleccione un préstamo activo.",
             Dock = DockStyle.Top,
             Height = 28,
-            ForeColor = UiTema.Sidebar
+            ForeColor = UiTema.Texto,
+            BackColor = Color.Transparent
         };
         UiTema.EstilizarGrid(_grid);
         _grid.Dock = DockStyle.Fill;

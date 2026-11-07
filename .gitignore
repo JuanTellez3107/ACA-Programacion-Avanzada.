@@ -38,3 +38,7 @@ coverage/
 ## SQL backups
 *.bak
 *.trn
+
+## Paquete de entrega generado (el ZIP se crea en Entrega/)
+Entrega/SistemaGestionBiblioteca/Aplicacion/
+Entrega/SistemaGestionBiblioteca/CodigoFuente/

@@ -16,10 +16,9 @@ internal static class Program
             MessageBox.Show(e.ExceptionObject.ToString(), "Error no controlado", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
         var servicios = ServiciosAplicacion.CrearPorDefecto();
-        if (!servicios.Fabrica.Probar(out _))
+        using (var ingreso = new FrmConexion(servicios))
         {
-            using var conexion = new FrmConexion(servicios);
-            if (conexion.ShowDialog() != DialogResult.OK)
+            if (ingreso.ShowDialog() != DialogResult.OK)
             {
                 return;
             }
